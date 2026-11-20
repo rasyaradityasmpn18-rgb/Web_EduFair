@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Blast Undangan Edu Fair</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Library PapaParse untuk membaca file CSV dengan mudah -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container" style="max-width: 900px;">
+        <h2>Panel Admin: Daftar Tamu & WhatsApp Blast</h2>
+        <p>Data dimuat otomatis dari file <strong>data-tamu.csv</strong></p>
+
+        <table id="tabel-tamu">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Tamu</th>
+                    <th>Instansi</th>
+                    <th>Kategori</th>
+                    <th>Aksi WhatsApp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan dimasukkan lewat JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Membaca file data-tamu.csv secara otomatis
+        Papa.parse("data-tamu.csv", {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const dataTamu = results.data;
+                const tbody = document.querySelector("#tabel-tamu tbody");
+                tbody.innerHTML = ""; // Bersihkan tabel
+
+                dataTamu.forEach(tamu => {
+                    // Buat link undangan personal berdasarkan domain lokal/host Anda
+                    // Ganti URL GitHub Pages / localhost sesuai tempat Anda nanti
+                    const baseUrl = window.location.href.replace("admin.html", "index.html");
+                    const linkUndangan = `${baseUrl}?to=${encodeURIComponent(tamu.nama_tamu)}&kategori=${encodeURIComponent(tamu.kategori)}`;
+                    
+                    // Pesan otomatis untuk WhatsApp
+                    const pesan = `Halo ${tamu.nama_tamu} (${tamu.instansi}),\n\nKami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara "Edu Fair & Career Day 2026".\n\nBerikut adalah tautan undangan digital Anda:\n${linkUndangan}\n\nMerupakan suatu kehormatan bagi kami jika berkenan hadir. Terima kasih.`;
+                    
+                    const waLink = `https://wa.me/${tamu.no_whatsapp}?text=${encodeURIComponent(pesan)}`;
+
+                    // Masukkan ke baris tabel
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${tamu.id}</td>
+                        <td><strong>${tamu.nama_tamu}</strong></td>
+                        <td>${tamu.instansi}</td>
+                        <td>${tamu.kategori}</td>
+                        <td>
+                            <a href="${waLink}" target="_blank" class="btn-wa">📲 Kirim WA</a>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            },
+            error: function(err) {
+                alert("Gagal membaca file data-tamu.csv. Pastikan file berada di folder yang sama!");
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>

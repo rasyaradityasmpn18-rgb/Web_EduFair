@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Edu Fair & Career Day 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Bagian Header / Kepada -->
+        <div class="invitation-header">
+            <p>Kepada Yth:</p>
+            <h2 id="nama-tamu">Tamu Undangan</h2>
+            <p class="badge-kategori" id="kategori-tamu">-</p>
+        </div>
+
+        <!-- Informasi Utama Acara -->
+        <div class="event-info">
+            <h1>Edu Fair & Career Day 2026</h1>
+            <p class="theme">"Membangun Masa Depan Gemilang Bersama Inovasi Teknologi"</p>
+            
+            <div class="detail-box">
+                <p><strong>📅 Tanggal:</strong> 25 - 26 November 2026</p>
+                <p><strong>⏰ Waktu:</strong> 08.00 WIB - Selesai</p>
+                <!-- Bagian Informasi Tempat -->
+                <p><strong>📍 Tempat:</strong> SMK Negeri 6 Kota Tangerang Selatan</p>
+            </div>
+
+            <!-- Bagian Google Maps Embed yang sudah diganti untuk SMKN 6 Tangsel -->
+            <div class="map-container">
+                <h3>Lokasi Acara</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0030725082875!2d106.66607649999999!3d-6.263324099999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb06a47e36b7%3A0x93b22c3ee1f216b1!2sSMKN%206%20Tangerang%20Selatan!5e0!3m2!1sid!2sid!4v1794710064452!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+
+            <!-- Rundown Acara -->
+            <div class="rundown">
+                <h3>Rundown Acara</h3>
+                <ul>
+                    <li><strong>08.00 - 08.30:</strong> Registrasi Tamu & Pembukaan</li>
+                    <li><strong>08.30 - 09.15:</strong> Sambutan Kepala Sekolah & Keynote Speaker</li>
+                    <li><strong>09.15 - 12.00:</strong> Expo Kampus & Career Booth</li>
+                    <li><strong>13.00 - 15.00:</strong> Workshop & Sharing Session</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Form Konfirmasi Kehadiran (RSVP) -->
+        <div class="rsvp-section">
+            <h3>Konfirmasi Kehadiran (RSVP)</h3>
+            <form id="rsvpForm">
+                <label for="kehadiran">Apakah Anda akan hadir?</label>
+                <select id="kehadiran" required>
+                    <option value="">-- Pilih Konfirmasi --</option>
+                    <option value="Hadir">Ya, Saya Hadir</option>
+                    <option value="Tidak Hadir">Mohon Maaf, Berhalangan Hadir</option>
+                </select>
+                <button type="submit" class="btn-submit">Kirim Konfirmasi</button>
+            </form>
+            <p id="rsvp-status" style="margin-top: 10px; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
